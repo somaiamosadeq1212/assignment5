@@ -15,9 +15,8 @@ export default function LoginForm({ onSwitchToRegister }) {
     });
 
   function onSubmit(data) {
-    // No backend — simulate successful submit:
     console.log("LOGIN SUBMIT:", data);
-    setSuccess("✅ Login UI submitted successfully (check console for data).");
+    setSuccess("Login submitted successfully");
   }
 
   function handleReset() {
