@@ -5,12 +5,12 @@ import RegisterForm from "./components/RegisterForm.jsx";
 export default function App() {
   const [tab, setTab] = useState("login");
   const header =
-  tab === "login"
-    ? {
+    tab === "login"
+      ? {
         title: "Welcome back",
         subtitle: "Log in with your email and password. No backend — we simulate submission.",
       }
-    : {
+      : {
         title: "Create your account",
         subtitle: "Register with basic validation (required fields + password match).",
       };
@@ -36,7 +36,7 @@ export default function App() {
           </button>
           <button
             className="tabBtn"
-             aria-selected={tab === "register"}
+            aria-selected={tab === "register"}
             onClick={() => setTab("register")}
             type="button"
           >
