@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import LoginForm from "./components/LoginForm.jsx";
+import RegisterForm from "./components/RegisterForm.jsx";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [tab, setTab] = useState("login");
+  const header =
+  tab === "login"
+    ? {
+        title: "Welcome back",
+        subtitle: "Log in with your email and password. No backend — we simulate submission.",
+      }
+    : {
+        title: "Create your account",
+        subtitle: "Register with basic validation (required fields + password match).",
+      };
+
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+    <div className="container">
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+        <div className="header">
+          <h1 className="title">{header.title}</h1>
+          <p className="subtitle">{header.subtitle}</p>
+        </div>
 
-export default App
+        <div className="tabs"  >
+          <button
+            className="tabBtn"
+            role="tab"
+            aria-selected={tab === "login"}
+            onClick={() => setTab("login")}
+            type="button"
+          >
+            Login
+          </button>
+          <button
+            className="tabBtn"
+             aria-selected={tab === "register"}
+            onClick={() => setTab("register")}
+            type="button"
+          >
+            Register
+          </button>
+        </div>
+
+        <div className="content" >
+          {tab === "login" ? (
+            <LoginForm onSwitchToRegister={() => setTab("register")} />
+          ) : (
+            <RegisterForm onSwitchToLogin={() => setTab("login")} />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
